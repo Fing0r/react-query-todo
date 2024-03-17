@@ -2,7 +2,7 @@ import './App.css'
 import { TodoList } from '@/components/todo-list'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ChakraProvider } from '@chakra-ui/react'
-import { CreateTodo } from '@/components/create-todo/create-todo'
+import { CreateTodo } from '@/components/create-todo'
 
 const queryClient = new QueryClient()
 
