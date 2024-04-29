@@ -6,6 +6,7 @@
   },
   "extends": [
     "plugin:react/recommended",
+    "airbnb",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -21,7 +22,42 @@
     "@typescript-eslint"
   ],
   "rules": {
-    "react/react-in-jsx-scope": "off"
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ]
+      }
+    ],
+    "react/jsx-props-no-spreading": "warn",
+    "import/no-unresolved": "off",
+    "import/extensions": "off",
+    "no-undef": "off",
+    "no-unused-vars": "warn",
+    "import/no-extraneous-dependencies": "off",
+    "react/function-component-definition": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/prefer-default-export": "off",
+    "react/jsx-filename-extension": [
+      2,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".tsx"
+        ]
+      }
+    ]
   },
   "settings": {
     "react": {

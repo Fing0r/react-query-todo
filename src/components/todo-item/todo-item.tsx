@@ -1,6 +1,8 @@
-import React from 'react'
 import { HStack, ListItem, Checkbox, Spinner } from '@chakra-ui/react'
+import React from 'react'
+
 import { useToggleTodoCompleted } from '@/api/hooks/useToggleTodoCompleted'
+import { RemoveTodo } from '@/components/remove-todo'
 
 interface TodoItemProps extends Todo {}
 
@@ -23,8 +25,15 @@ const TodoItem = (props: TodoItemProps) => {
                     isChecked={completed}
                 >
                     {title}
-                    {isLoading && <Spinner size="xs" ml={4} />}
                 </Checkbox>
+                <HStack
+                    height="40px"
+                    width="40px"
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    {isLoading ? <Spinner size="xs" /> : <RemoveTodo id={id} />}
+                </HStack>
             </HStack>
         </ListItem>
     )

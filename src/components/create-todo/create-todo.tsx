@@ -1,23 +1,25 @@
-import React, { useState } from 'react'
 import { Button, HStack, Input } from '@chakra-ui/react'
+import React, { useState } from 'react'
+
 import { useCreateTodo } from '@/api/hooks/useCreateTodo'
 
-interface CreateTodoProps {}
-
-const CreateTodo = (props: CreateTodoProps) => {
-    const {} = props
-
+const CreateTodo = () => {
     const [todo, setTodo] = useState('')
 
-    const { mutate: handleCreateTodo } = useCreateTodo({ todo, setTodo })
+    const { mutate: handleCreateTodo } = useCreateTodo({
+        todo,
+        onSuccess: () => {
+            setTodo('')
+        },
+    })
 
     return (
-        <HStack>
+        <HStack width="100%" px={4} py={2}>
             <Input value={todo} onChange={(e) => setTodo(e.target.value)} />
             <Button
                 isDisabled={!todo}
                 onClick={() => handleCreateTodo()}
-                color={'purple'}
+                color="purple"
             >
                 Создать
             </Button>

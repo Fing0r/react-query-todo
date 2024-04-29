@@ -1,11 +1,10 @@
-import React from 'react'
 import { List, Spinner } from '@chakra-ui/react'
-import { TodoItem } from '@/components/todo-item'
+import React from 'react'
+
 import { useGetTodosList } from '@/api/hooks/useGetTodosList'
+import { TodoItem } from '@/components/todo-item'
 
-interface Props {}
-
-const TodoList = (props: Props) => {
+const TodoList = () => {
     const { data, isLoading } = useGetTodosList()
 
     if (!data?.length && isLoading) {
@@ -17,7 +16,18 @@ const TodoList = (props: Props) => {
     }
 
     return (
-        <List spacing={10} p={16} bgColor="white" color="black" width={500}>
+        <List
+            height="100%"
+            spacing={10}
+            py={2}
+            px={6}
+            style={{
+                overflow: 'auto',
+            }}
+            bgColor="white"
+            color="black"
+            width="100%"
+        >
             {data.map((item) => (
                 <TodoItem {...item} key={item.id} />
             ))}

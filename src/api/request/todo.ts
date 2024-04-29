@@ -48,7 +48,22 @@ export const createTodo = async (title: string): Promise<Todo> => {
     const res = await fetch(url, {
         method: 'POST',
         headers: baseHeaders,
-        body: JSON.stringify({ title: title, completed: false }),
+        body: JSON.stringify({ title, completed: false }),
+    })
+
+    if (!res.ok) {
+        throw new Error('Error')
+    }
+
+    return res.json()
+}
+
+export const removeTodo = async (id: number): Promise<Todo> => {
+    const url = `${baseApi}/${ROUTES.TODOS}/${id}`
+
+    const res = await fetch(url, {
+        method: 'DELETE',
+        headers: baseHeaders,
     })
 
     if (!res.ok) {
