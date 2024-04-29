@@ -8,6 +8,7 @@ import { ChakraProvider } from '@/theme'
 
 const queryClient = new QueryClient()
 
+console.log('test')
 function App() {
     return (
         <div className="app">
