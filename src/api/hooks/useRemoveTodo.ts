@@ -1,6 +1,7 @@
+import { useToast } from '@chakra-ui/react'
 import { useMutation, useQueryClient } from 'react-query'
 
-import { removeTodo } from '../request/todo'
+import { removeTodo } from '../services/todo'
 
 interface Params {
     id: number
@@ -8,6 +9,7 @@ interface Params {
 
 const useRemoveTodo = (params: Params) => {
     const { id } = params
+    const toast = useToast()
 
     const client = useQueryClient()
 
@@ -16,6 +18,18 @@ const useRemoveTodo = (params: Params) => {
             client.setQueriesData<Todo[]>(['todos'], (oldData) =>
                 (oldData ?? []).filter((todo) => id !== todo.id),
             )
+            toast({
+                title: 'Todo был удален',
+                status: 'warning',
+                position: 'top-right',
+            })
+        },
+        onError: () => {
+            toast({
+                title: 'Ошибка при удаление Todo',
+                status: 'error',
+                position: 'top-right',
+            })
         },
         mutationFn: () => removeTodo(id),
     })

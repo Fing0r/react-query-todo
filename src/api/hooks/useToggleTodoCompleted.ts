@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from 'react-query'
 
-import { toggleTodoCompleted } from '../request/todo'
+import { toggleTodoCompleted } from '../services/todo'
 
 interface Params {
     id: number

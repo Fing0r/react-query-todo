@@ -27,8 +27,14 @@ export const toggleTodoCompleted = async (
     return res.json()
 }
 
-export const getTodosList = async (): Promise<Todo[]> => {
-    const url = `${baseApi}/${ROUTES.TODOS}`
+export type TodoState = 'all' | 'completed' | 'process'
+
+export const getTodosList = async (
+    state: TodoState = 'all',
+): Promise<Todo[]> => {
+    const queries = state === 'all' ? '' : `?completed=${state === 'completed'}`
+
+    const url = `${baseApi}/${ROUTES.TODOS}/${queries}`
 
     const res = await fetch(url, {
         method: 'GET',

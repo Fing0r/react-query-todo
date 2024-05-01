@@ -1,7 +1,7 @@
 import { useToast } from '@chakra-ui/react'
 import { useMutation, useQueryClient } from 'react-query'
 
-import { createTodo } from '../request/todo'
+import { createTodo } from '../services/todo'
 
 interface Params {
     todo: string
@@ -26,12 +26,14 @@ const useCreateTodo = (params: Params) => {
             toast({
                 title: 'Todo был создан',
                 status: 'success',
+                position: 'top-right',
             })
         },
         onError: () => {
             toast({
                 title: 'Произошла ошибка при создание todo',
                 status: 'error',
+                position: 'top-right',
             })
         },
     })

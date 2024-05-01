@@ -1,10 +1,11 @@
 import { useQuery } from 'react-query'
 
-import { getTodosList } from '../request/todo'
+import { getTodosList, TodoState } from '../services/todo'
 
-const useGetTodosList = () => useQuery({
-        queryKey: ['todos'],
-        queryFn: getTodosList,
+const useGetTodosList = (state: TodoState) =>
+    useQuery({
+        queryKey: ['todos', state],
+        queryFn: () => getTodosList(state),
     })
 
 export { useGetTodosList }
