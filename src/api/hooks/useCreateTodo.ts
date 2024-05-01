@@ -3,6 +3,9 @@ import { useMutation, useQueryClient } from 'react-query'
 
 import { createTodo } from '../services/todo'
 
+import { useTodoFilters } from '@/store/todoFilters'
+import { Todo } from '@/types/todo'
+
 interface Params {
     todo: string
     onSuccess?: () => void
@@ -13,16 +16,22 @@ const useCreateTodo = (params: Params) => {
 
     const toast = useToast()
 
+    const { completeType } = useTodoFilters()
+
     const client = useQueryClient()
 
     return useMutation({
         mutationFn: () => createTodo(todo),
         onSuccess: (newTodo) => {
             onSuccess?.()
-            client.setQueriesData<Todo[]>(['todos'], (oldTodos = []) => [
-                ...oldTodos,
-                newTodo,
-            ])
+
+            if (completeType !== 'completed') {
+                client.setQueriesData<Todo[]>(
+                    ['todos', completeType],
+                    (oldTodos = []) => [...oldTodos, newTodo],
+                )
+            }
+
             toast({
                 title: 'Todo был создан',
                 status: 'success',

@@ -1,3 +1,5 @@
+import { Todo, TodoState } from '@/types/todo'
+
 const baseHeaders = {
     'Content-type': 'application/json; charset=UTF-8',
 }
@@ -26,8 +28,6 @@ export const toggleTodoCompleted = async (
 
     return res.json()
 }
-
-export type TodoState = 'all' | 'completed' | 'process'
 
 export const getTodosList = async (
     state: TodoState = 'all',

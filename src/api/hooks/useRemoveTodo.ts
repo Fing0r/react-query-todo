@@ -3,6 +3,8 @@ import { useMutation, useQueryClient } from 'react-query'
 
 import { removeTodo } from '../services/todo'
 
+import { Todo } from '@/types/todo'
+
 interface Params {
     id: number
 }

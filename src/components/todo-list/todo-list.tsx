@@ -2,17 +2,13 @@ import { List, Spinner } from '@chakra-ui/react'
 import React from 'react'
 
 import { useGetTodosList } from '@/api/hooks/useGetTodosList'
-import { TodoState } from '@/api/request/todo'
 import { TodoItem } from '@/components/todo-item'
+import { useTodoFilters } from '@/store/todoFilters'
 
-interface Props {
-    view: TodoState
-}
+const TodoList = () => {
+    const { completeType } = useTodoFilters()
 
-const TodoList = (props: Props) => {
-    const { view } = props
-
-    const { data, isLoading } = useGetTodosList(view)
+    const { data, isLoading } = useGetTodosList(completeType)
 
     if (!data?.length && isLoading) {
         return <Spinner />

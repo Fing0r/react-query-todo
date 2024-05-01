@@ -1,6 +1,8 @@
 import { useQuery } from 'react-query'
 
-import { getTodosList, TodoState } from '../services/todo'
+import { getTodosList } from '../services/todo'
+
+import { TodoState } from '@/types/todo'
 
 const useGetTodosList = (state: TodoState) =>
     useQuery({

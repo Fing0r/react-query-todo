@@ -3,6 +3,7 @@ import React from 'react'
 
 import { useToggleTodoCompleted } from '@/api/hooks/useToggleTodoCompleted'
 import { RemoveTodo } from '@/components/remove-todo'
+import { Todo } from '@/types/todo'
 
 interface TodoItemProps extends Todo {}
 
