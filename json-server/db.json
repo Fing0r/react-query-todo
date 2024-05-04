@@ -2,7 +2,7 @@
   "todos": [
     {
       "title": "wedwqedewqd",
-      "completed": false,
+      "completed": true,
       "id": 1
     },
     {
@@ -19,6 +19,16 @@
       "title": "dwqed",
       "completed": false,
       "id": 4
+    },
+    {
+      "title": "dqwedqw",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "title": "qwedqwed",
+      "completed": false,
+      "id": 6
     }
   ]
 }

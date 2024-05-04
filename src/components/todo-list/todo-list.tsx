@@ -6,9 +6,9 @@ import { TodoItem } from '@/components/todo-item'
 import { useTodoFilters } from '@/store/todoFilters'
 
 const TodoList = () => {
-    const { completeType } = useTodoFilters()
+    const { state } = useTodoFilters()
 
-    const { data, isLoading } = useGetTodosList(completeType)
+    const { data, isLoading } = useGetTodosList(state)
 
     if (!data?.length && isLoading) {
         return <Spinner />

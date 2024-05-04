@@ -13,17 +13,16 @@ interface Params {
 const useToggleTodoCompleted = (params: Params) => {
     const { id, completed } = params
 
-    const { completeType } = useTodoFilters()
+    const { state } = useTodoFilters()
 
     const client = useQueryClient()
 
     return useMutation({
         onSuccess: (data) => {
-            client.setQueriesData<Todo[]>(['todos', completeType], (oldData) =>
+            client.setQueriesData<Todo[]>(['todos', state], (oldData) =>
                 (oldData ?? []).reduce<Todo[]>((acc, curr) => {
                     if (
-                        (completeType === 'completed' ||
-                            completeType === 'process') &&
+                        (state === 'completed' || state === 'process') &&
                         curr.id === id
                     ) {
                         return acc

@@ -16,7 +16,7 @@ const useCreateTodo = (params: Params) => {
 
     const toast = useToast()
 
-    const { completeType } = useTodoFilters()
+    const { state } = useTodoFilters()
 
     const client = useQueryClient()
 
@@ -25,9 +25,9 @@ const useCreateTodo = (params: Params) => {
         onSuccess: (newTodo) => {
             onSuccess?.()
 
-            if (completeType !== 'completed') {
+            if (state !== 'completed') {
                 client.setQueriesData<Todo[]>(
-                    ['todos', completeType],
+                    ['todos', state],
                     (oldTodos = []) => [...oldTodos, newTodo],
                 )
             }

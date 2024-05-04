@@ -2,33 +2,24 @@ import { Button, HStack } from '@chakra-ui/react'
 import React from 'react'
 
 import { useTodoFilters } from '@/store/todoFilters'
+import { TodoState } from '@/types/todo'
+
+const TODO_STATE_FILTERS: TodoState[] = ['all', 'completed', 'process']
 
 const Filters = () => {
-    const { changeTodoFilterType, completeType } = useTodoFilters()
+    const { changeTodoFilterType, state } = useTodoFilters()
 
     return (
         <HStack width="100%" px={4}>
-            <Button
-                width="100%"
-                variant={completeType === 'all' ? 'solid' : 'outline'}
-                onClick={() => changeTodoFilterType('all')}
-            >
-                all
-            </Button>
-            <Button
-                width="100%"
-                variant={completeType === 'completed' ? 'solid' : 'outline'}
-                onClick={() => changeTodoFilterType('completed')}
-            >
-                completed
-            </Button>
-            <Button
-                width="100%"
-                variant={completeType === 'process' ? 'solid' : 'outline'}
-                onClick={() => changeTodoFilterType('process')}
-            >
-                process
-            </Button>
+            {TODO_STATE_FILTERS.map((todoState) => (
+                <Button
+                    width="100%"
+                    variant={state === todoState ? 'solid' : 'outline'}
+                    onClick={() => changeTodoFilterType(todoState)}
+                >
+                    {todoState}
+                </Button>
+            ))}
         </HStack>
     )
 }

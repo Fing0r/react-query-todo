@@ -3,13 +3,13 @@ import { create } from 'zustand'
 import { TodoState } from '@/types/todo'
 
 interface Props {
-    completeType: TodoState
+    state: TodoState
     changeTodoFilterType: (type: TodoState) => void
 }
 
 const useTodoFilters = create<Props>((set) => ({
-    completeType: 'all',
-    changeTodoFilterType: (type) => set(() => ({ completeType: type })),
+    state: 'all',
+    changeTodoFilterType: (type) => set(() => ({ state: type })),
 }))
 
 export { useTodoFilters }
