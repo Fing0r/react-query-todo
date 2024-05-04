@@ -7,7 +7,7 @@ const Filters = () => {
     const { changeTodoFilterType, completeType } = useTodoFilters()
 
     return (
-        <HStack width="100%" px={6}>
+        <HStack width="100%" px={4}>
             <Button
                 width="100%"
                 variant={completeType === 'all' ? 'solid' : 'outline'}

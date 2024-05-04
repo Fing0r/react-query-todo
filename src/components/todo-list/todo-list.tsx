@@ -21,9 +21,8 @@ const TodoList = () => {
     return (
         <List
             height="100%"
-            spacing={10}
-            py={2}
-            px={6}
+            spacing={4}
+            px={4}
             style={{
                 overflow: 'auto',
             }}
